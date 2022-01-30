@@ -20,3 +20,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.insetShadow {
+  -webkit-box-shadow: inset 2px 5px 17px -2px #bec0c2;
+  box-shadow: inset 2px 5px 17px -2px #bec0c2;
+}
+
+.bubble {
+  border-radius: 20% 31% 31px 120px;
+}
