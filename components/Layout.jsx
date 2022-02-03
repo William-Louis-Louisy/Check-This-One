@@ -52,7 +52,7 @@ export default function Layout({ children, pageTitle }) {
           </Link>
         </div>
       </nav>
-      <main className="max-h-full min-h-screen">{children}</main>
+      <main className="main max-h-full min-h-screen">{children}</main>
       <Footer />
     </>
   );

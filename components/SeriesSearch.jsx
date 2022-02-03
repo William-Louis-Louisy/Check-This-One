@@ -5,7 +5,6 @@ import SerieCard from "./SerieCard";
 export default function SeriesSearch() {
   const [seriesData, setSeriesData] = useState([]);
   const [search, setSearch] = useState("a");
-
   useEffect(() => {
     axios
       .get(

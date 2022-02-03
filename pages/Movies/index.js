@@ -1,10 +1,13 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Card from "../../components/Card";
 import Layout from "../../components/Layout";
 
 export default function Movies(movies) {
   const [moviesList, setMoviesList] = useState([]);
+  const router = useRouter();
+
   useEffect(() => {
     axios
       .get(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/movies`, {
@@ -19,7 +22,11 @@ export default function Movies(movies) {
       </h1>
       <div className="flex flex-col items-center my-24 gap-6 md:gap-10 md:flex-row md:flex-wrap md:justify-center">
         {moviesList?.map((movie) => (
-          <Card key={movie._id} movie={movie.tmdb_id} url="#" />
+          <Card
+            key={movie._id}
+            movie={movie.tmdb_id}
+            url={`/Movies/${encodeURIComponent(movie.tmdb_id)}`}
+          />
         ))}
       </div>
     </Layout>

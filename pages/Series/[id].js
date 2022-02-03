@@ -4,10 +4,10 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 
-export default function MovieDetails() {
+export default function SerieDetails() {
   const router = useRouter();
   const { id } = router.query;
-  const [movieDetails, setMovieDetails] = useState([]);
+  const [serieDetails, setSerieDetails] = useState([]);
 
   //   const dateFormater = (date) => {
   //     let [yy, mm, dd] = date.split("-");
@@ -17,36 +17,36 @@ export default function MovieDetails() {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${id}?api_key=0a441cfbeb22431ec2c06b0c759cc525&language=en-US`
+        `https://api.themoviedb.org/3/tv/${id}?api_key=0a441cfbeb22431ec2c06b0c759cc525&language=en-US`
       )
-      .then((res) => setMovieDetails(res.data));
+      .then((res) => setSerieDetails(res.data));
   }, [id]);
 
-  if (!movieDetails) {
+  if (!serieDetails) {
     return "Loading";
   }
 
   return (
-    <Layout pageTitle={"Movie Details"}>
+    <Layout pageTitle={"Serie Details"}>
       <div className="flex flex-col items-center my-16 text-knicksBlue">
         <img
           src={
-            movieDetails.poster_path
-              ? "https://image.tmdb.org/t/p/w500" + movieDetails.poster_path
+            serieDetails.poster_path
+              ? "https://image.tmdb.org/t/p/w500" + serieDetails.poster_path
               : "/poster.jpg"
           }
-          alt="movie poster"
+          alt="serie poster"
           className="w-9/12 md:w-1/4 rounded-lg mt-4 border-knicksBlue border-2 insetShadow"
         />
         <h2 className="font-black text-3xl text-center p-4 uppercase">
-          {movieDetails.title}
+          {serieDetails.title}
         </h2>
         <h3 className="font-light text-center px-4">
-          Release date: {movieDetails.release_date}
+          Release date: {serieDetails.first_air_date}
         </h3>
-        {/* <h3>Genre(s): {movieDetails.genres[Object.keys(movieDetails.genres)[0]].name}</h3> */}
+        {/* <h3>Genre(s): {serieDetails.genres[Object.keys(serieDetails.genres)[0]].name}</h3> */}
         <p className="my-4 md:mx-56 text-center px-4 text-lg">
-          {movieDetails.overview}
+          {serieDetails.overview}
         </p>
       </div>
     </Layout>

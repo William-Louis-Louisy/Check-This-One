@@ -12,7 +12,9 @@ export default function MovieCard({ movie }) {
   const handleDelete = (movieId) => {
     axios
       .delete(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/movies/${movieId}`)
-      .then((res) => console.log("delete data", res.data));
+      .then((res) =>
+        alert("This show has been removed from your recommendations")
+      );
   };
   const handlePost = () => {
     axios
@@ -20,7 +22,7 @@ export default function MovieCard({ movie }) {
         tmdb_id: movie.id,
         isAdded: true,
       })
-      .then((res) => alert("Your movie has been added to your recomendations"));
+      .then((res) => alert("This movie has been added to your recomendations"));
   };
 
   // useEffect(() => {
@@ -34,7 +36,7 @@ export default function MovieCard({ movie }) {
   // console.log("stuff", stuff);
 
   return (
-    <div className="cursor-pointer text-knicksBlue hover:text-knicksOrange hover:scale-110 border-2 border-knicksSilver hover:border-knicksOrange py-3 flex flex-col items-center w-4/5 h-[500px] bg-white max-w-[312px] rounded-xl insetShadow hover:shadow-xl duration-300 overflow-hidden">
+    <div className="text-knicksBlue hover:text-knicksOrange hover:scale-110 border-2 border-knicksSilver hover:border-knicksOrange py-3 flex flex-col items-center w-4/5 h-[500px] bg-white max-w-[312px] rounded-xl insetShadow hover:shadow-xl duration-300 overflow-hidden">
       <img
         src={
           movie.poster_path

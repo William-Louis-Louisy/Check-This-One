@@ -20,7 +20,11 @@ export default function Series(series) {
       </h1>
       <div className="flex flex-col items-center my-24 gap-6 md:gap-10 md:flex-row md:flex-wrap md:justify-center">
         {seriesList?.map((serie) => (
-          <CardSeries key={serie._id} serie={serie.tmdb_tv_id} url="#" />
+          <CardSeries
+            key={serie._id}
+            serie={serie.tmdb_tv_id}
+            url={`/Series/${encodeURIComponent(serie.tmdb_tv_id)}`}
+          />
         ))}
       </div>
     </Layout>

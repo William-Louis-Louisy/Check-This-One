@@ -1,15 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function SerieCard({ serie }) {
   const dateFormater = (date) => {
     let [yy, mm, dd] = date.split("-");
     return [dd, mm, yy].join("/");
   };
+
   const handleDelete = (serieId) => {
     axios
       .delete(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/series/${serieId}`)
-      .then((res) => console.log("delete data", res.data));
+      .then((res) =>
+        alert("This show has been removed from your recommendations")
+      );
   };
   const handlePost = () => {
     axios
@@ -17,11 +21,11 @@ export default function SerieCard({ serie }) {
         tmdb_tv_id: serie.id,
         isAdded: true,
       })
-      .then((res) => console.log("post data", res.data));
+      .then((res) => alert("This show has been added to your recommendations"));
   };
 
   return (
-    <div className="cursor-pointer text-knicksBlue hover:text-knicksOrange hover:scale-110 border-2 border-knicksSilver hover:border-knicksOrange py-3 flex flex-col items-center w-4/5 h-[500px] bg-white max-w-[312px] rounded-xl insetShadow hover:shadow-xl duration-300 overflow-hidden">
+    <div className="text-knicksBlue hover:text-knicksOrange hover:scale-110 border-2 border-knicksSilver hover:border-knicksOrange py-3 flex flex-col items-center w-4/5 h-[500px] bg-white max-w-[312px] rounded-xl insetShadow hover:shadow-xl duration-300 overflow-hidden">
       <img
         src={
           serie.poster_path
