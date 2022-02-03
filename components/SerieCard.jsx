@@ -1,8 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
+import axios from "axios";
+
 export default function SerieCard({ serie }) {
   const dateFormater = (date) => {
     let [yy, mm, dd] = date.split("-");
     return [dd, mm, yy].join("/");
+  };
+  const handleDelete = (serieId) => {
+    axios
+      .delete(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/series/${serieId}`)
+      .then((res) => console.log("delete data", res.data));
+  };
+  const handlePost = () => {
+    axios
+      .post(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/series`, {
+        tmdb_tv_id: serie.id,
+        isAdded: true,
+      })
+      .then((res) => console.log("post data", res.data));
   };
 
   return (
@@ -32,7 +47,10 @@ export default function SerieCard({ serie }) {
       </h4>
 
       <span className="mt-4 mb-2 flex flex-row items-center gap-6">
-        <button className="border-red-600 border-2 py-2 px-4 rounded-2xl text-red-600 hover:scale-105">
+        <button
+          className="border-red-600 border-2 py-2 px-4 rounded-2xl text-red-600 hover:scale-105"
+          onClick={() => handleDelete(serie.id)}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"
@@ -46,7 +64,10 @@ export default function SerieCard({ serie }) {
             />
           </svg>
         </button>
-        <button className="border-knicksBlue border-2 py-2 px-4 rounded-2xl text-knicksBlue hover:scale-105">
+        <button
+          className="border-knicksBlue border-2 py-2 px-4 rounded-2xl text-knicksBlue hover:scale-105"
+          onClick={() => handlePost()}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-5 w-5"

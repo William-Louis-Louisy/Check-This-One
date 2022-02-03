@@ -8,7 +8,8 @@ async function getMovies() {
 }
 // GET ONE
 async function getOneMovie(movieId) {
-  const movie = await collection.find({ _id: ObjectId(movieId) }).next();
+  const movie = collection.find({ tmdb_id: movieId });
+  // console.log("result of get db", movie);
   return movie;
 }
 // UPDATE
@@ -24,16 +25,15 @@ async function updateMovie(movieId, body) {
   );
 }
 // POST
-async function createMovie({ tmdb_id }) {
-  console.log("coucou", await collection.find().toArray());
-
-  // return collection.insertOne({
-  //   tmdb_id,
-  // });
+async function createMovie({ tmdb_id, isAdded }) {
+  return collection.insertOne({
+    tmdb_id,
+    isAdded,
+  });
 }
 // DELETE
 const deleteMovie = (movieId) => {
-  return collection.deleteOne({ _id: ObjectId(movieId) });
+  return collection.deleteOne({ tmdb_id: parseInt(movieId) });
 };
 module.exports = {
   getMovies,

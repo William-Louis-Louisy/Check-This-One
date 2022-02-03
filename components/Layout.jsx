@@ -11,7 +11,6 @@ export default function Layout({ children, pageTitle }) {
   const handleClick = () => {
     setOpen(!isOpen);
   };
-  console.log("HEYHOOO", isOpen);
   return (
     <>
       <Head>

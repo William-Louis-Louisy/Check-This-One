@@ -4,7 +4,7 @@ import React from "react";
 export default function AdminBtn({ link }) {
   return (
     <Link passHref href={link}>
-      <div className="flex flex-row justify-center items-center border-knicksBlue border-2 p-2 rounded-full text-knicksBlue ml-8 hover:border-knicksOrange hover:text-knicksOrange hover:shadow-inner hover:shadow-slate-700 focus:shadow-inner focus:shadow-knicksBlack duration-200">
+      <div className="cursor-pointer flex flex-row justify-center items-center border-knicksBlue border-2 p-2 rounded-full text-knicksBlue ml-8 hover:border-knicksOrange hover:text-knicksOrange hover:shadow-inner hover:shadow-slate-700 focus:shadow-inner focus:shadow-knicksBlack duration-200">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-6 w-6"

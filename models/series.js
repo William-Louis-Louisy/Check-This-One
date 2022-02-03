@@ -25,14 +25,15 @@ async function updateSerie(serieId, body) {
   );
 }
 // POST
-async function createSerie({ tmdb_id }) {
+async function createSerie({ tmdb_tv_id, isAdded }) {
   return collection.insertOne({
     tmdb_tv_id,
+    isAdded,
   });
 }
 // DELETE
 const deleteSerie = (serieId) => {
-  return collection.deleteOne({ _id: ObjectId(serieId) });
+  return collection.deleteOne({ tmdb_tv_id: parseInt(serieId) });
 };
 
 module.exports = {

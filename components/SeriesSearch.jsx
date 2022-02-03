@@ -13,7 +13,6 @@ export default function SeriesSearch() {
       )
       .then((res) => setSeriesData(res.data.results));
   }, [search]);
-  console.log("series:", seriesData);
   return (
     <div>
       <div className="form-container">
@@ -21,7 +20,7 @@ export default function SeriesSearch() {
           <input
             type="text"
             placeholder="Enter a serie title"
-            className="border-knicksBlue border-2 p-2 mx-2 text-center text-knicksBlue rounded-lg"
+            className="border-knicksBlue border-2 p-2 mx-2 text-center text-knicksBlue rounded-lg flex justify-center items-center"
             onChange={(e) => setSearch(e.target.value)}
           />
           {/* <input type="submit" value="SEARCH" /> */}

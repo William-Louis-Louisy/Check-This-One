@@ -1,25 +1,38 @@
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 /* eslint-disable @next/next/no-img-element */
 export default function MovieCard({ movie }) {
+  const [stuff, setStuff] = useState(null);
+
   const dateFormater = (date) => {
     let [yy, mm, dd] = date.split("-");
     return [dd, mm, yy].join("/");
   };
   const handleDelete = (movieId) => {
     axios
-      .delete(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/movies`, {
-        movieId: movieId,
-      })
+      .delete(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/movies/${movieId}`)
       .then((res) => console.log("delete data", res.data));
   };
   const handlePost = () => {
     axios
       .post(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/movies`, {
         tmdb_id: movie.id,
+        isAdded: true,
       })
-      .then((res) => console.log("post data", res.data));
+      .then((res) => alert("Your movie has been added to your recomendations"));
   };
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.NEXT_PUBLIC_HOST_API_URL}/api/movies/${movie.id}`, {
+  //       params: { movieId: movie.id },
+  //     })
+  //     .then((res) => setStuff(res.data));
+  // }, [movie.id]);
+
+  // console.log("stuff", stuff);
+
   return (
     <div className="cursor-pointer text-knicksBlue hover:text-knicksOrange hover:scale-110 border-2 border-knicksSilver hover:border-knicksOrange py-3 flex flex-col items-center w-4/5 h-[500px] bg-white max-w-[312px] rounded-xl insetShadow hover:shadow-xl duration-300 overflow-hidden">
       <img
@@ -49,7 +62,7 @@ export default function MovieCard({ movie }) {
       <div className="mt-4 mb-2 flex flex-row items-center gap-6">
         <button
           className="border-red-600 border-2 py-2 px-4 rounded-2xl text-red-600 hover:scale-105"
-          onClick={() => handleDelete()}
+          onClick={() => handleDelete(movie.id)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,6 +80,7 @@ export default function MovieCard({ movie }) {
         <button
           className="border-knicksBlue border-2 py-2 px-4 rounded-2xl text-knicksBlue hover:scale-105"
           onClick={() => handlePost()}
+          // style={{ display: isAdded ? "none" : "flex" }}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
