@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AdminBtn from "./AdminBtn";
 import BurgerMenu from "./BurgerMenu";
 import CloseBtn from "./CloseBtn";
 import LinkButton from "./LinkButton";
@@ -14,6 +15,7 @@ export default function Header({ onClickFunction }) {
       <div className="hidden md:flex flex-row gap-3">
         <LinkButton content="MOVIES" href="/Movies" />
         <LinkButton content="SERIES" href="/Series" />
+        <AdminBtn link="/Dashboard" />
       </div>
       <div className="h-10 w-10 bg-transparent md:hidden"></div>
     </div>

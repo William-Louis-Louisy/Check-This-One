@@ -11,6 +11,10 @@ module.exports = {
         knicksSilver: "#BEC0C2",
         knicksBlack: "#000000",
       },
+      backgroundImage: {
+        movies: "url('/movies.jpg')",
+        series: "url('/series.jpg')",
+      },
     },
   },
   plugins: [],

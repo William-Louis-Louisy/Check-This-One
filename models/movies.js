@@ -25,9 +25,11 @@ async function updateMovie(movieId, body) {
 }
 // POST
 async function createMovie({ tmdb_id }) {
-  return collection.insertOne({
-    tmdb_id,
-  });
+  console.log("coucou", await collection.find().toArray());
+
+  // return collection.insertOne({
+  //   tmdb_id,
+  // });
 }
 // DELETE
 const deleteMovie = (movieId) => {

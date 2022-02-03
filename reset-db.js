@@ -5,16 +5,16 @@ import Series from "./models/series";
 const collection = db.collection("movies");
 async function reset() {
   await collection.deleteMany({});
-  await Movies.createItem({
+  await Movies.createMovie({
     content: "test",
-    done: false,
+    added: false,
+  });
+
+  await db.collection("series").deleteMany({});
+  await Series.createSerie({
+    content: "test",
+    added: false,
   });
 }
-
-await collection.deleteMany({});
-await Series.createItem({
-  content: "test",
-  done: false,
-});
 
 reset();
